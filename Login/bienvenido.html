@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eceff1;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .register-container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #1976d2;
+            margin-bottom: 24px;
+        }
+
+        p {
+            margin-bottom: 36px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 24px;
+        }
+
+        .close-button {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Bienvenido a tu Logeo exitoso</h1>
+        <p id="userEmail">Cargando datos del usuario...</p>
+        <img src="cat_dance.gif" alt="GIF de gato bailando">
+        <button class="close-button" onclick="closeRegister()">Cerrar Sesión</button>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-auth.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBJv-QyeXXPW1eak3_J1H0gKvD-Fws1NGU",
+            authDomain: "login-9e1c9.firebaseapp.com",
+            projectId: "login-9e1c9",
+            storageBucket: "login-9e1c9.appspot.com",
+            messagingSenderId: "567143214740",
+            appId: "1:567143214740:web:ef042462a8a2ad5cb24e81",
+            measurementId: "G-MEYNYZ4934"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        function closeRegister() {
+            firebase.auth().signOut()
+                .then(() => {
+                    alert('Cerrar sesión');
+                    console.log("Cierre de sesión exitoso");
+                    window.location.replace("/index.html");
+                })
+                .catch((error) => {
+                    console.error("Error al cerrar sesión", error.message);
+                });
+        }
+    </script>
+</body>
+</html>
